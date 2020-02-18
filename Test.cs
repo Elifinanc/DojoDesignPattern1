@@ -61,5 +61,16 @@ namespace S10___DOJO_1___Design_Pattern_TDD
 
             Assert.AreEqual(75000 + 35000 + 40000 + 65000, totalTeamSalary);
         }
+
+        [Test]
+        public void TestAllSubordinatesSalary50000()
+        {
+
+            IEnumerable<AbstractEmployee> employee = _boss.AllSubordinates.Where(employee => employee.Salary >50000);
+            IEnumerable<float> salaries = employee.Select(employee => employee.Salary);
+            float totalTeamSalary = salaries.Aggregate((x, y) => x + y);
+
+            Assert.AreEqual(75000 + 65000, totalTeamSalary);
+        }
     }
 }
